@@ -35,11 +35,13 @@ const Component = () => {
 ```
 
 ### Options
-| Option         | Type                                | Default Value  |
-| :------------- |:----------------------------------- | :------------- |
-| type?          | `localStorage` or `sessionStorage`  | `localStorage` |
-| timestamp?     | boolean                             | false          |
-| forceUpdate?   | boolean                             | false          |
+| Option         | Type                                | Default Value  | Defination |
+| :------------- |:----------------------------------- | :------------- | :--------- |
+| type?          | `localStorage` or `sessionStorage`  | `localStorage` | Specify type of browser storage. |
+| timestamp?     | boolean                             | false          | Store values with timestamp. |
+| forceUpdate?   | boolean                             | false          | Update react component after calling setItem and removeItem |
+
+Note: `?` denotes optional property
 ## License
 
 MIT © [ravid7000](https://github.com/ravid7000)
