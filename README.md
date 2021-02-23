@@ -1,6 +1,6 @@
 # use-browser-storage
 
-> React hook to use browser's storage. Currenlty supported localStoage and sessionStoage.
+> React hook to use browser's storage. Currenlty supporting localStoage and sessionStoage.
 
 [![NPM](https://img.shields.io/npm/v/use-browser-storage.svg)](https://www.npmjs.com/package/use-browser-storage) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -36,7 +36,7 @@ const Component = () => {
 
 ### Options
 | Option         | Type                                | Default Value  |
-| -------------- |:------------------------------------| ---------------|
+| :------------- |:----------------------------------- | :------------- |
 | type?          | `localStorage` or `sessionStorage`  | `localStorage` |
 | timestamp?     | boolean                             | false          |
 | forceUpdate?   | boolean                             | false          |

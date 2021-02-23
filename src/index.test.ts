@@ -1,29 +1,75 @@
-import { useMyHook } from './'
-import { renderHook, act } from "@testing-library/react-hooks";
+import { useBrowserStorage } from './'
+import { renderHook } from "@testing-library/react-hooks";
 
 // mock timer using jest
 jest.useFakeTimers();
 
-describe('useMyHook', () => {
-  it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
+describe('useBrowserStorage', () => {
+  it('Should defined getItem, setItem and removeItem', () => {
+    const hooks = renderHook(useBrowserStorage);
 
-    expect(result.current).toBe(0);
+    expect(hooks.result.current.getItem).toBeDefined();
+    expect(hooks.result.current.setItem).toBeDefined();
+    expect(hooks.result.current.removeItem).toBeDefined();
+  })
 
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+  it('Should set the value in localstorage', () => {
+    const hooks = renderHook(useBrowserStorage);
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
+    hooks.result.current.setItem('test', 1)
 
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
+    expect(hooks.result.current.getItem('test')).toStrictEqual(1);
+  })
 
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
+  it('Should set null value in localstorage', () => {
+    const hooks = renderHook(useBrowserStorage);
+
+    hooks.result.current.setItem('test', null)
+
+    expect(hooks.result.current.getItem('test')).toEqual(null);
+  })
+
+  it('Should set object value in localstorage', () => {
+    const hooks = renderHook(useBrowserStorage);
+
+    hooks.result.current.setItem('test', { a: '1' })
+
+    expect(hooks.result.current.getItem('test')).toStrictEqual({ a: '1' });
+  })
+
+  it('Should set array value in localstorage', () => {
+    const hooks = renderHook(useBrowserStorage);
+
+    hooks.result.current.setItem('test', [1, 2, '3'])
+
+    expect(hooks.result.current.getItem('test')).toStrictEqual([1, 2, '3']);
+  })
+
+  it('Should set true value in localstorage', () => {
+    const hooks = renderHook(useBrowserStorage);
+
+    hooks.result.current.setItem('test', true)
+
+    expect(hooks.result.current.getItem('test')).toStrictEqual(true);
+  })
+
+  it('Should set value with timestamp in localstorage', () => {
+    const hooks = renderHook(() => useBrowserStorage({ timestamp: true }));
+
+    hooks.result.current.setItem('test', 1)
+
+    expect(hooks.result.current.getItem('test')).toHaveProperty('timestamp');
+  })
+
+  it('Should removeItem', () => {
+    const hooks = renderHook((useBrowserStorage));
+
+    hooks.result.current.setItem('test', 1)
+
+    expect(hooks.result.current.getItem('test')).toStrictEqual(1);
+
+    hooks.result.current.removeItem('test');
+
+    expect(hooks.result.current.getItem('test')).toEqual(undefined);
   })
 })

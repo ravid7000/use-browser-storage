@@ -10,7 +10,7 @@ export enum STORAGE_TYPE {
   sessionStorage = 'sessionStorage'
 }
 
-interface UseBrowserStorageTypes {
+export interface UseBrowserStorageTypes {
   /**
    * Change the type of storage `localStorage | sessionStorage`
    * @default localStorage
@@ -26,6 +26,18 @@ interface UseBrowserStorageTypes {
    * @default false
    */
   forceUpdate?: boolean;
+}
+
+type ValueType = any;
+
+export interface UseBrowserStorageReturnType {
+  getItem: (name: string) => ValueType;
+  setItem: (name: string, value: ValueType) => {
+    value: ValueType;
+    oldValue: ValueType;
+    location: keyof typeof STORAGE_TYPE;
+  };
+  removeItem: (name: string) => keyof typeof STORAGE_TYPE;
 }
 
 /**
@@ -53,7 +65,7 @@ interface UseBrowserStorageTypes {
  * 
  * @param options 
  */
-export const useBrowserStorage = (options?: UseBrowserStorageTypes) => {
+export const useBrowserStorage = (options?: UseBrowserStorageTypes): UseBrowserStorageReturnType => {
   const [count, updateCount] = useState(0);
 
   const storageType = (options && options.type) || STORAGE_TYPE.localStorage;
@@ -81,14 +93,14 @@ export const useBrowserStorage = (options?: UseBrowserStorageTypes) => {
           timestamp: new Date()
         }))
       } else {
-        storage.setItem(name, value);
+        storage.setItem(name, JSON.stringify(value));
       }
 
       if (forceUpdate) {
         updateCount(safeUpdateCount);
       }
     }
-    return { name, value, oldValue, location: storageType };
+    return { value, oldValue, location: storageType };
   }, [storageType, timestamp, count]);
 
   const removeItem = useCallback((name: string) => {
