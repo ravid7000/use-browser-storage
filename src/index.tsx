@@ -41,7 +41,7 @@ export interface UseBrowserStorageReturnType {
 }
 
 /**
- * React hook to use browser's storage. Currenlty supported localStoage and sessionStoage.
+ * React hook to use browser's storage. Currenlty supporting localStorage and sessionStorage.
  * 
  * @example
  * import { useBrowserStorage } from 'use-local-storage';
