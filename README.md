@@ -1,8 +1,8 @@
-# use-local-storage
+# use-browser-storage
 
-> Use local and session storage in react component
+> React hook to use browser's storage. Currenlty supported localStoage and sessionStoage.
 
-[![NPM](https://img.shields.io/npm/v/use-local-storage.svg)](https://www.npmjs.com/package/use-local-storage) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/use-browser-storage.svg)](https://www.npmjs.com/package/use-browser-storage) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -15,22 +15,31 @@ npm install --save use-local-storage
 ```tsx
 import * as React from 'react'
 
-import { useMyHook } from 'use-local-storage'
+import { useBrowserStorage } from 'use-browser-storage'
 
-const Example = () => {
-  const example = useMyHook()
+const Component = () => {
+  const { getItem, setItem, removeItem } = useBrowserStorage({ forceUpdate: true });
+
+  React.useEffect(() => {
+    window.setTimeout(() => {
+      setItem('welcome', 'Hi Dev, welcome!')
+    }, 1000);
+  }, [])
+
   return (
     <div>
-      {example}
+      {getItem('welcome')}
     </div>
   )
 }
 ```
 
+### Options
+| Option         | Type                                | Default Value  |
+| -------------- |:------------------------------------| ---------------|
+| type?          | `localStorage` or `sessionStorage`  | `localStorage` |
+| timestamp?     | boolean                             | false          |
+| forceUpdate?   | boolean                             | false          |
 ## License
 
 MIT © [ravid7000](https://github.com/ravid7000)
-
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
