@@ -34,7 +34,7 @@ const Component = () => {
 }
 ```
 
-### Options
+## Options
 | Option         | Type                                | Default Value  | Defination |
 | :------------- |:----------------------------------- | :------------- | :--------- |
 | type?          | `localStorage` or `sessionStorage`  | `localStorage` | Specify type of browser storage. |
