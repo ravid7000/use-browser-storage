@@ -1,6 +1,6 @@
 {
   "name": "use-browser-storage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Use local and session storage in react component",
   "author": "ravid7000",
   "license": "MIT",
