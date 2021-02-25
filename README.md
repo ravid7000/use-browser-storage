@@ -1,13 +1,13 @@
 # use-browser-storage
 
-> React hook to use browser's storage. Currenlty supporting localStorage and sessionStorage.
+> React hook to use browser's storage. Currently supporting localStorage and sessionStorage.
 
 [![NPM](https://img.shields.io/npm/v/use-browser-storage.svg)](https://www.npmjs.com/package/use-browser-storage) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save use-local-storage
+npm install --save use-browser-storage
 ```
 
 ## Usage

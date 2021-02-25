@@ -7,12 +7,13 @@ const hasSupport = hasLocalStorageSupport();
 
 export enum STORAGE_TYPE {
   localStorage = 'localStorage',
-  sessionStorage = 'sessionStorage'
+  sessionStorage = 'sessionStorage',
+  cookie = 'cookie',
 }
 
 export interface UseBrowserStorageTypes {
   /**
-   * Change the type of storage `localStorage | sessionStorage`
+   * Change the type of storage `localStorage | sessionStorage | cookie`
    * @default localStorage
    */
   type?: keyof typeof STORAGE_TYPE;
@@ -41,7 +42,7 @@ export interface UseBrowserStorageReturnType {
 }
 
 /**
- * React hook to use browser's storage. Currenlty supporting localStorage and sessionStorage.
+ * React hook to use browser's storage. Currently supporting localStorage and sessionStorage.
  * 
  * @example
  * import { useBrowserStorage } from 'use-local-storage';
